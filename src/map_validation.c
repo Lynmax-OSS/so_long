@@ -49,6 +49,7 @@ int	is_rectangle(char **map)
 	int i;
 	int row_len;
 
+	i = 0;
 	if (!map || !map[0])
 		return (0);
 	row_len = ft_strlen(map[0]);
@@ -72,14 +73,14 @@ int proper_walls(char **map)
 	while (map[rows] != NULL)
 		rows++;
 	cols = ft_strlen(map[0]);
-	while (i < cols - 1 && map[0][i] != '\n' && map[rows - 1][i] != '\n')
+	while (i < cols - 1)
 	{
 		if (map[0][i] != '1' || map[rows - 1][i] != '1')
 			return (0);
 		i++;
 	}
 	i = 1;
-	while(i < rows - 1)
+	while(i < rows - 1 && map[i] != NULL)
 	{
 		if (map[i][0] != '1' || map[i][cols - 2] != '1')
 			return (0);
@@ -106,10 +107,7 @@ int map_validation(char **map)
 
 int main(void)
 {
-
 	char **map;
-
-
 
 	map = read_map("../maps/map_1.ber");
 
