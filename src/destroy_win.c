@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-int off(int keycode, t_data *mlx)
+int off(int keycode, t_game *mlx)
 {
 	printf("Keycode:%d\n", keycode);
 	if(keycode == 65307)
@@ -25,7 +25,7 @@ int off(int keycode, t_data *mlx)
 	return (0);
 }
 
-int x_off(t_data *mlx)
+int x_off(t_game *mlx)
 {
 	mlx_destroy_window(mlx->mlx, mlx->wind);
 	mlx_destroy_display(mlx->mlx);
