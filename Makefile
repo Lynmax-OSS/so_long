@@ -1,4 +1,4 @@
-SRCS    = so_long.c destroy_win.c
+SRCS    = so_long.c ./src/*.c
 
 OBJS    = $(SRCS:.c=.o)
 
