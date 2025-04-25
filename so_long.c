@@ -12,13 +12,17 @@
 
 #include "so_long.h"
 
-int main(void)
+int main(int ac, char **av)//Map file path should be theonly arguement needed
 {
-	t_data mlx;
-
-	mlx.mlx = mlx_init();
-	mlx.wind = mlx_new_window(mlx.mlx, 1920, 1080, "Gay Bowser");
-	mlx_hook(mlx.wind, 2, 1L<<0, off, &mlx);
-	mlx_hook(mlx.wind, 17, 1L<<17, x_off, &mlx);
-	mlx_loop(mlx.mlx);
+	if (ac == 2)
+	{
+		checkfile_extention (needs path to file)
+		get map (needs path to file to read)
+		validate map (result form get map comes here)
+		get sprites( path to xpm files)
+		render map( displays sprites based on map)
+		(we need to loop this)handle inputs()
+		(same with this)game loops until level cleared
+		exit game(has to detect that the player has unlocked exit picked up collectibles and exited the map)
+	}
 }
