@@ -38,12 +38,15 @@ typedef struct s_textures{
 typedef struct s_line_info{
 
 	char *line;
+	char *onedmap;
 	char **map;
 	int count;
 	int	fd;
 	int i;
+	char *find_nl;
 
 } t_line_info;
+
 
 
 int off(int keycode, t_game *mlx);
