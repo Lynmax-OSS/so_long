@@ -82,7 +82,7 @@ int proper_walls(char **map)
 	i = 1;
 	while(i < rows - 1 && map[i] != NULL)
 	{
-		if (map[i][0] != '1' || map[i][cols - 2] != '1')
+		if (map[i][0] != '1' || map[i][cols - 1] != '1')
 			return (0);
 		i++;
 	}
@@ -91,7 +91,7 @@ int proper_walls(char **map)
 
 int	required_elements(char **map)
 {
-
+	
 }
 
 int map_validation(char **map)
@@ -113,4 +113,5 @@ int main(void)
 
 	ft_printf("%d\n", is_rectangle(map));
 	ft_printf("%d\n", proper_walls(map));
+	ft_printf("%d\n", required_elements(map));
 }
