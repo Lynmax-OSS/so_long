@@ -52,7 +52,11 @@ char **read_map(char *filepath)
 	{
 		line.find_nl = ft_strchr(line.line, '\n');
 		if(line.find_nl)
-			*(line.find_nl) = '\0';
+		{
+			*(line.find_nl) = 0;
+			if (line.find_nl > line.line && *(line.find_nl - 1) == '\r')
+				*(line.find_nl - 1) = '\0';
+		}
 		line.map[line.i++] = ft_strdup(line.line);
 		free (line.line);
 	}
@@ -61,18 +65,18 @@ char **read_map(char *filepath)
 	return (line.map);
 }
 
-int main(void)
-{
-	char **map;
-	int i;
+// int main(void)
+// {
+// 	char **map;
+// 	int i;
 
-	i = 0;
-	map = read_map("../maps/map_1.ber");
+// 	i = 0;
+// 	map = read_map("../maps/map_1.ber");
 	
-	while (map[i] != NULL)
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
-	free (map);
-}
+// 	while (map[i] != NULL)
+// 	{
+// 		ft_printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// 	free (map);
+// }
