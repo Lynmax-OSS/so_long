@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 #include "../Libft/libft.h"
 
 int extension_checker(char *map)
@@ -20,7 +20,7 @@ int extension_checker(char *map)
 	path_len = ft_strlen(map);
 	if (!ft_strrchr(map, '.'))
 		ft_putstr_fd("error", 2);
-	else if (ft_strcmp(map + path_len - 3, "ber") == 0) 
+	else if (ft_strncmp(map + path_len - 3, "ber", 3) == 0) 
 		return (1);
 	return (0);
 }
