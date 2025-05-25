@@ -17,5 +17,5 @@
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->width * 100, game->height * 100, "Down the Dungeon");
+	game->win = mlx_new_window(game->mlx, 1920, 1080, "Down the Dungeon");
 }
