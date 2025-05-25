@@ -14,11 +14,10 @@
 #include <stdlib.h>
 #include "../so_long.h"
 #include "../Libft/libft.h"
-#include "../../ft_printf/ft_printf.h"
 
 int line_count(char *filepath)
 {
-	t_line_info line;
+	t_map_info line;
 
 	line.count = 0;
 	line.fd = open(filepath, O_RDONLY);
@@ -35,14 +34,15 @@ int line_count(char *filepath)
 
 char **read_map(char *filepath)
 {
-	t_line_info line;
+	t_map_info line;
+	t_game game;
 
 	line.i = 0;
 	line.count = line_count(filepath);
-	line.map = malloc(sizeof(char*) * (line.count + 1));
-	if(line.map == NULL)
+	game.map = malloc(sizeof(char*) * (line.count + 1));
+	if(game.map == NULL)
 	{
-		free (line.map);
+		free (game.map);
 		return (NULL);
 	}
 	line.fd = open(filepath, O_RDONLY);
@@ -57,12 +57,12 @@ char **read_map(char *filepath)
 			if (line.find_nl > line.line && *(line.find_nl - 1) == '\r')
 				*(line.find_nl - 1) = '\0';
 		}
-		line.map[line.i++] = ft_strdup(line.line);
+		game.map[line.i++] = ft_strdup(line.line);
 		free (line.line);
 	}
-	line.map[line.i] = NULL;
+	game.map[line.i] = NULL;
 	close(line.fd);
-	return (line.map);
+	return (game.map);
 }
 
 // int main(void)
