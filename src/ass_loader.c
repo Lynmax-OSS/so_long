@@ -12,14 +12,21 @@
 
 #include "../so_long.h"
 
-void ass_loader(t_game *game)
+void	ass_loader(t_game *game)
 {
-    int size;
-
-    size = TILESIZE;
-    game->wall = mlx_xpm_file_to_image(game->mlx, WALL, &size, &size);
-    game->floor = mlx_xpm_file_to_image(game->mlx, FLOOR, &size, &size);
-    game->player = mlx_xpm_file_to_image(game->mlx, PLAYER, &size, &size);
-    game->collect = mlx_xpm_file_to_image(game->mlx, COLLECT, &size, &size);
-    game->exit = mlx_xpm_file_to_image(game->mlx, EXIT, &size, &size);
+	int x;
+	int y;
+	y = 0;
+	while (game->map[y])
+		y++;
+	game->height = y;
+	game->width = ft_strlen(game->map[0]);
+	game->wall = mlx_xpm_file_to_image(game->mlx, WALL, &x, &y);
+	game->floor = mlx_xpm_file_to_image(game->mlx, FLOOR, &x, &y);
+	game->player = mlx_xpm_file_to_image(game->mlx, PLAYER, &x, &y);
+	game->exit = mlx_xpm_file_to_image(game->mlx, EXIT, &x, &y);
+	game->collect = mlx_xpm_file_to_image(game->mlx, COLLECT, &x, &y);
+	game->moves = 0;
+	game->collectibles = count_collectibles(game->map);
+	find_player_position(game);
 }
