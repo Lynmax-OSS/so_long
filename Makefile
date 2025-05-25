@@ -1,4 +1,5 @@
-SRCS    = so_long.c ./src/*.c
+SRCS    = so_long.c ./src/ass_loader.c ./src/check_extension.c ./src/destroy_win.c ./src/map_extract.c\
+		  ./src/map_validation.c ./src/render_map.c\
 
 OBJS    = $(SRCS:.c=.o)
 
@@ -17,16 +18,20 @@ MLX_LIB = mlx_linux
 # Additional libraries needed
 LIBS    = -lXext -lX11 -lm 
 
+LIBFT_DIR	=		./Libft
+
+LIBFT		=		$(LIBFT_DIR)/libft.a
+
 all:    $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -L. -lmlx -L$(X11_LIB) -I$(MLX_INC) -I$(X11_INC) $(LIBS) -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) -L. -lmlx -L$(X11_LIB) -I$(MLX_INC) -I$(X11_INC) $(LIBS) -o $(NAME)
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I$(X11_INC) -I$(MLX_INC) -O3 -c $< -o $@
 
 clean:
-					$(RM) $(OBJS_DIR) so_long.o destroy_win.o
+					$(RM) $(OBJS) so_long.o destroy_win.o
 					$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean:				clean
