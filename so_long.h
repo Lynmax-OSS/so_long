@@ -16,36 +16,59 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "./minilibx-linux/mlx.h"
+# include "./mlx/mlx.h"
+# define TILESIZE 100
+# define WALL "../textures/walls.xpm"
+# define FLOOR "../textures/floor.xpm"
+# define PLAYER "../textures/player.xpm"
+# define COLLECT "../textures/collectibles.xpm"
+# define EXIT "../textures/exit.xpm"
 
 typedef struct s_game{
 
-	int *mlx;
-	int *img;
-	int *wind;
+	void *mlx;
+	void *win;
+	char **map;
+	void *wall;
+	void *player;
+	void *floor;
+	void *collect;
+	void *exit;
+	int		width;
+	int		height;
+	int		player_x;
+	int		player_y;
+	int		collectibles;
 
 }	t_game;
 
-typedef struct s_textures{
 
-	char *walls;
-	char *player;
-	char *space;
-	char *collectibles;
-	char *exit;
-} t_textures;
-
-typedef struct s_line_info{
+typedef struct s_map_info{
 
 	char *line;
 	char *onedmap;
-	char **map;
 	int count;
 	int	fd;
 	int i;
 	char *find_nl;
 
-} t_line_info;
+} t_map_info;
+
+typedef struct s_ginfo{
+
+	int p_count;
+	int c_count;
+	int e_count;
+
+} t_ginfo;
+
+typedef struct s_ma_info{
+
+	int rows;
+	int cols;
+	char tile;
+
+} t_ma_info;
 
 
 
@@ -53,7 +76,10 @@ int off(int keycode, t_game *mlx);
 int x_off(t_game *mlx);
 char **read_map(char *filepath);
 int extension_checker(char *map);
-
+void ass_loader(t_game *game);
+int map_validation(char **map);
+void	render_map(t_game *game);
+void	init_mlx(t_game *game);
 
 
 
