@@ -52,7 +52,10 @@ void flood(char **map, int x, int y, t_access *acc)
 	if (map[y][x] == 'C')
 		acc->collectibles++;
 	if (map[y][x] == 'E')
+	{
 		acc->found_exit = 1;
+		return ;
+	}
 	map[y][x] = '1';
 	flood(map, x + 1, y, acc);
 	flood(map, x - 1, y, acc);
