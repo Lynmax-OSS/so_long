@@ -23,7 +23,7 @@ int main(int ac, char **av)
 		game.map = read_map(av[1]);
 		if (!map_validation(game.map))
 		{
-			clean_exit(&game);
+			free_map(game.map);
 			return (1);
 		}
 		init_mlx(&game);

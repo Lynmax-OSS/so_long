@@ -128,13 +128,25 @@ static int	required_elements(char **map)
 int map_validation(char **map)
 {
 	if (!is_rectangle(map))
+	{
+		ft_printf("Error:Not a rectangle\n");
 		return (0);
+	}
 	if (!proper_walls(map))
+	{
+		ft_printf("Error:Leak in the walls\n");
 		return (0);
+	}
 	if (!required_elements(map))
+	{
+		ft_printf("Error:Not enough element\n");
 		return (0);
+	}
 	if (!is_map_playable(map))
+	{
+		ft_printf("Error:Map not playable\n");
 		return (0);
+	}
 	return (1);
 }
 
