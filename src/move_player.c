@@ -25,6 +25,8 @@ void	move_player(t_game *game, int dx, int dy)
 		return ;
 	if (tile == 'C')
 		game->collectibles--;
+	if (tile == 'E' && game->collectibles != 0)
+		return ;
 	if (tile == 'E' && game->collectibles == 0)
 		clean_exit(game);
 	game->map[game->player_y][game->player_x] = '0';
@@ -32,5 +34,6 @@ void	move_player(t_game *game, int dx, int dy)
 	game->player_x = new_x;
 	game->player_y = new_y;
 	game->moves++;
+	ft_printf("Steps taken: %d\n", game->moves);
 	render_map(game);
 }
