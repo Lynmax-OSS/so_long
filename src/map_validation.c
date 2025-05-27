@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include "../Libft/libft.h"
-#include "../../ft_printf/ft_printf.h"
 
 // int	map_validation(char **map)
 // {
@@ -44,7 +42,7 @@
 
 char **read_map(char *filepath);
 
-int	is_rectangle(char **map)
+static int	is_rectangle(char **map)
 {
 	int i;
 	int row_len;
@@ -62,9 +60,9 @@ int	is_rectangle(char **map)
 	return (1);
 }
 
-int proper_walls(char **map)
+static int proper_walls(char **map)
 {
-	t_ma_info coordinate;
+	t_map_dim coordinate;
 	int i;
 
 	i = 0;
@@ -88,7 +86,7 @@ int proper_walls(char **map)
 	return (1);
 }
 
-int element_count(char c, t_ginfo *count)
+static int element_count(char c, t_elements *count)
 {
 	if (c == 'P')
 		count->p_count++;
@@ -101,9 +99,9 @@ int element_count(char c, t_ginfo *count)
 	return (1);	
 }
 
-int	required_elements(char **map)
+static int	required_elements(char **map)
 {
-	t_ginfo count;
+	t_elements count;
 	int i;
 	int j;
 
@@ -134,6 +132,8 @@ int map_validation(char **map)
 	if (!proper_walls(map))
 		return (0);
 	if (!required_elements(map))
+		return (0);
+	if (!is_map_playable(map))
 		return (0);
 	return (1);
 }

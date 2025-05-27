@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keteo <keteo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 13:26:40 by keteo             #+#    #+#             */
-/*   Updated: 2025/05/25 13:26:40 by keteo            ###   ########.fr       */
+/*   Created: 2025/05/25 14:52:53 by keteo             #+#    #+#             */
+/*   Updated: 2025/05/25 14:52:53 by keteo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../so_long.h"
 
-void	init_mlx(t_game *game)
+int	input_handler(int keycode, t_game *game)
 {
-	t_map_dim axis;
-
-	axis.rows = 0;
-	axis.cols = 0;
-	while(game->map[axis.rows] != NULL)
-		axis.rows++;
-	axis.cols = ft_strlen(game->map[0]);
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx,  axis.cols * 100, axis.rows * 100, "Down the Dungeon");
+	if (keycode == 65307)
+		clean_exit(game);
+	if (keycode == 119)
+		move_player(game, 0, -1);
+	if (keycode == 115)
+		move_player(game, 0, 1);
+	if (keycode == 97)
+		move_player(game, -1, 0);
+	if (keycode == 100)
+		move_player(game, 1, 0);
+	return (0);
 }

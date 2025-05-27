@@ -22,6 +22,11 @@ void	ass_loader(t_game *game)
 	game->height = y;
 	game->width = ft_strlen(game->map[0]);
 	game->wall = mlx_xpm_file_to_image(game->mlx, WALL, &x, &y);
+	if (!game->wall)
+	{
+		ft_putstr_fd("Error loading wall image\n", 2);
+		clean_exit(game);
+	}
 	game->floor = mlx_xpm_file_to_image(game->mlx, FLOOR, &x, &y);
 	game->player = mlx_xpm_file_to_image(game->mlx, PLAYER, &x, &y);
 	game->exit = mlx_xpm_file_to_image(game->mlx, EXIT, &x, &y);

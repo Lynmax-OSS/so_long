@@ -13,9 +13,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "../so_long.h"
-#include "../Libft/libft.h"
 
-int line_count(char *filepath)
+static int line_count(char *filepath)
 {
 	t_map_info line;
 

@@ -1,6 +1,4 @@
-SRCS    = so_long.c ./src/ass_loader.c ./src/check_extension.c ./src/destroy_win.c ./src/map_extract.c\
-		  ./src/map_validation.c ./src/render_map.c\
-
+SRCS    = so_long.c $(wildcard src/*.c)
 OBJS    = $(SRCS:.c=.o)
 
 NAME    = so_long
@@ -24,14 +22,14 @@ LIBFT		=		$(LIBFT_DIR)/libft.a
 
 all:    $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) -L. -lmlx -L$(X11_LIB) -I$(MLX_INC) -I$(X11_INC) $(LIBS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) -g $(OBJS) $(LIBFT) -L. -lmlx -L$(X11_LIB) -I$(MLX_INC) -I$(X11_INC) $(LIBS) -o $(NAME)
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I$(X11_INC) -I$(MLX_INC) -O3 -c $< -o $@
 
 clean:
-					$(RM) $(OBJS) so_long.o destroy_win.o
+					$(RM) $(OBJS)
 					$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean:				clean
@@ -40,7 +38,7 @@ fclean:				clean
 
 re:					fclean all
 
-.PHONY:				fclean all re clean
+.PHONY:				fclean all re clean Libft
 
 # For MAC below
 

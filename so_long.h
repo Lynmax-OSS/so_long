@@ -16,32 +16,33 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "./mlx/mlx.h"
+# include "./Libft/libft.h"
+# include "./minilibx/mlx.h"
 # define TILESIZE 100
-# define WALL "../textures/walls.xpm"
-# define FLOOR "../textures/floor.xpm"
-# define PLAYER "../textures/player.xpm"
-# define COLLECT "../textures/collectibles.xpm"
-# define EXIT "../textures/exit.xpm"
+# define WALL "./textures/walls.xpm"
+# define FLOOR "./textures/floor.xpm"
+# define PLAYER "./textures/character.xpm"
+# define COLLECT "./textures/collectibles.xpm"
+# define EXIT "./textures/exit.xpm"
 
 typedef struct s_game{
 
-	void *mlx;
-	void *win;
-	char **map;
-	void *wall;
-	void *player;
-	void *floor;
-	void *collect;
-	void *exit;
+	void	*mlx;
+	void	*win;
+	char	**map;
+	void	*wall;
+	void	*player;
+	void	*floor;
+	void	*collect;
+	void	*exit;
 	int		width;
 	int		height;
 	int		player_x;
 	int		player_y;
 	int		collectibles;
+	int		moves;
 
 }	t_game;
-
 
 typedef struct s_map_info{
 
@@ -54,33 +55,41 @@ typedef struct s_map_info{
 
 } t_map_info;
 
-typedef struct s_ginfo{
+typedef struct s_elements{
 
 	int p_count;
 	int c_count;
 	int e_count;
 
-} t_ginfo;
+} t_elements;
 
-typedef struct s_ma_info{
+typedef struct s_map_dim{
 
 	int rows;
 	int cols;
 	char tile;
 
-} t_ma_info;
+} t_map_dim;
 
+typedef struct s_access{
 
+	int	collectibles;
+	int	found_exit;
 
-int off(int keycode, t_game *mlx);
-int x_off(t_game *mlx);
-char **read_map(char *filepath);
-int extension_checker(char *map);
-void ass_loader(t_game *game);
-int map_validation(char **map);
+} t_access;
+
+int		count_collectibles(char **map);
+int		map_validation(char **map);
+int		extension_checker(char *map);
+int		input_handler(int keycode, t_game *game);
+int 	is_map_playable(char **map);
+int		clean_exit(t_game *game);
+void	move_player(t_game *game, int dx, int dy);
+void	ass_loader(t_game *game);
 void	render_map(t_game *game);
 void	init_mlx(t_game *game);
-
-
+void	find_player_position(t_game *game);
+void	free_map(char **map);
+char	**read_map(char *filepath);
 
 #endif
