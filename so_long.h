@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "./Libft/libft.h"
-# include "./minilibx/mlx.h"
+# include "./minilibx_linux/mlx.h"
 # define TILESIZE 100
 # define WALL "./textures/walls.xpm"
 # define FLOOR "./textures/floor.xpm"
