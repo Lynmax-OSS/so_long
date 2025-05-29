@@ -22,8 +22,13 @@ LIBFT		=		$(LIBFT_DIR)/libft.a
 
 all:    $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) libft
 	$(CC) -g $(OBJS) $(LIBFT) -L. -lmlx -L$(X11_LIB) -I$(MLX_INC) -I$(X11_INC) $(LIBS) -o $(NAME)
+
+libft:
+	@echo "Compiling libft..."
+	make all -C $(LIBFT_DIR)
+	@echo "Libft compiled."
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I$(X11_INC) -I$(MLX_INC) -O3 -c $< -o $@
