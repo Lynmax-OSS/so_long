@@ -20,6 +20,8 @@ int main(int ac, char **av)
 
 		if (ac != 2)
 			return (1);
+		if (!extension_checker(av[1]))
+			return (1);
 		game.map = read_map(av[1]);
 		if (!map_validation(game.map))
 		{

@@ -139,7 +139,7 @@ int map_validation(char **map)
 	}
 	if (!required_elements(map))
 	{
-		ft_printf("Error:Not enough element\n");
+		ft_printf("Error:Not enough/Unkown character element\n");
 		return (0);
 	}
 	if (!is_map_playable(map))

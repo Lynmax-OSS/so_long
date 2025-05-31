@@ -19,7 +19,7 @@ int extension_checker(char *map)
 
 	path_len = ft_strlen(map);
 	if (!ft_strrchr(map, '.'))
-		ft_putstr_fd("error", 2);
+		ft_printf("Error:Invalid file\n");
 	else if (ft_strncmp(map + path_len - 3, "ber", 3) == 0) 
 		return (1);
 	return (0);
