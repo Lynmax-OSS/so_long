@@ -120,7 +120,7 @@ static int	required_elements(char **map)
 		}
 		i++;
 	}
-	if (count.p_count != 1 || count.e_count < 1 || count.c_count < 1)
+	if (count.p_count != 1 || count.e_count != 1 || count.c_count < 1)
 		return (0);
 	return (1);
 }
