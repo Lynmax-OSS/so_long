@@ -63,34 +63,48 @@ void flood(char **map, int x, int y, t_access *acc)
 	flood(map, x, y - 1, acc);
 }
 
-int is_map_playable(char **map)
+int	find_clone_position(char **map, int *x, int *y)
 {
-	char **clone;
-	t_access acc;
-	int x;
-	int y;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				*x = j;
+				*y = i;
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	is_map_playable(char **map)
+{
+	t_access	acc;
+	char		**clone;
+	int			x;
+	int			y;
 
 	acc.collectibles = 0;
 	acc.found_exit = 0;
 	clone = clone_map(map);
 	if (!clone)
 		return (0);
-	y = 0;
-	while (clone[y])
+	if (!find_clone_position(clone, &x, &y))
 	{
-		x = 0;
-		while (clone[y][x])
-		{
-			if (clone[y][x] == 'P')
-			{
-				flood(clone, x, y, &acc);
-				free_cloned_map(clone);
-				return (acc.found_exit && acc.collectibles >= count_collectibles(map));
-			}
-			x++;
-		}
-		y++;
+		free_cloned_map(clone);
+		return (0);
 	}
+	flood(clone, x, y, &acc);
 	free_cloned_map(clone);
-	return (0);
+	return (acc.found_exit && acc.collectibles >= count_collectibles(map));
 }

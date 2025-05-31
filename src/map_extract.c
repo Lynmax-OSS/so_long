@@ -31,6 +31,19 @@ static int line_count(char *filepath)
 	return (line.count);
 }
 
+void	trim_newline(char *line)
+{
+	char	*nl;
+
+	nl = ft_strchr(line, '\n');
+	if (nl)
+	{
+		*nl = '\0';
+		if (nl > line && *(nl - 1) == '\r')
+			*(nl - 1) = '\0';
+	}
+}
+
 char **read_map(char *filepath)
 {
 	t_map_info line;
@@ -49,13 +62,7 @@ char **read_map(char *filepath)
 		return (NULL);
 	while ((line.line = get_next_line(line.fd))) 
 	{
-		line.find_nl = ft_strchr(line.line, '\n');
-		if(line.find_nl)
-		{
-			*(line.find_nl) = 0;
-			if (line.find_nl > line.line && *(line.find_nl - 1) == '\r')
-				*(line.find_nl - 1) = '\0';
-		}
+		trim_newline(line.line);
 		game.map[line.i++] = ft_strdup(line.line);
 		free (line.line);
 	}
