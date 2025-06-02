@@ -33,7 +33,7 @@ void	render_map(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if(game->map[y][x] == '1')
+			if (game->map[y][x] == '1')
 				put_image(game, game->wall, x, y);
 			else
 				put_image(game, game->floor, x, y);
@@ -42,7 +42,7 @@ void	render_map(t_game *game)
 			else if (game->map[y][x] == 'E')
 				put_image(game, game->exit, x, y);
 			else if (game->map[y][x] == 'C')
-			 put_image(game, game->collect, x, y);
+				put_image(game, game->collect, x, y);
 			x++;
 		}
 		y++;

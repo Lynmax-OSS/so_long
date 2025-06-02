@@ -40,30 +40,30 @@
 // 	return (0);
 // }
 
-char **read_map(char *filepath);
+char	**read_map(char *filepath);
 
 static int	is_rectangle(char **map)
 {
-	int i;
-	int row_len;
+	int	i;
+	int	row_len;
 
 	i = 0;
 	if (!map || !map[0])
 		return (0);
 	row_len = ft_strlen(map[0]);
-	while (map[i]) 
+	while (map[i])
 	{
-		if(ft_strlen(map[i]) != row_len)
+		if (ft_strlen(map[i]) != row_len)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static int proper_walls(char **map)
+static int	proper_walls(char **map)
 {
-	t_map_dim coordinate;
-	int i;
+	t_map_dim	coordinate;
+	int			i;
 
 	i = 0;
 	coordinate.rows = 0;
@@ -77,7 +77,7 @@ static int proper_walls(char **map)
 		i++;
 	}
 	i = 1;
-	while(i < coordinate.rows - 1 && map[i] != NULL)
+	while (i < coordinate.rows - 1 && map[i] != NULL)
 	{
 		if (map[i][0] != '1' || map[i][coordinate.cols - 1] != '1')
 			return (0);
@@ -86,7 +86,7 @@ static int proper_walls(char **map)
 	return (1);
 }
 
-static int element_count(char c, t_elements *count)
+static int	element_count(char c, t_elements *count)
 {
 	if (c == 'P')
 		count->p_count++;
@@ -96,14 +96,14 @@ static int element_count(char c, t_elements *count)
 		count->c_count++;
 	else if (c != '1' && c != '0')
 		return (0);
-	return (1);	
+	return (1);
 }
 
 static int	required_elements(char **map)
 {
-	t_elements count;
-	int i;
-	int j;
+	t_elements	count;
+	int			i;
+	int			j;
 
 	i = 0;
 	count.p_count = 0;
@@ -112,7 +112,7 @@ static int	required_elements(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while(map[i][j])
+		while (map[i][j])
 		{
 			if (!element_count(map[i][j], &count))
 				return (0);
@@ -125,7 +125,7 @@ static int	required_elements(char **map)
 	return (1);
 }
 
-int map_validation(char **map)
+int	map_validation(char **map)
 {
 	if (!is_rectangle(map))
 	{

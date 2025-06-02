@@ -14,9 +14,9 @@
 
 void	move_player(t_game *game, int dx, int dy)
 {
-	int new_x;
-	int new_y;
-	char tile;
+	int		new_x;
+	int		new_y;
+	char	tile;
 
 	new_x = game->player_x + dx;
 	new_y = game->player_y + dy;

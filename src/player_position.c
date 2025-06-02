@@ -16,6 +16,7 @@ void	find_player_position(t_game *game)
 {
 	int	y;
 	int	x;
+
 	y = 0;
 	while (game->map[y])
 	{
