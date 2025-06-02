@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
+	t_game	game;
+
 	if (ac == 2)
 	{
-		t_game	game;
-
 		if (ac != 2)
 			return (1);
 		if (!extension_checker(av[1]))

@@ -12,10 +12,10 @@
 
 #include "../so_long.h"
 
-char **clone_map(char **map)
+char	**clone_map(char **map)
 {
-	int i;
-	char **clone;
+	int		i;
+	char	**clone;
 
 	i = 0;
 	while (map[i])
@@ -33,9 +33,10 @@ char **clone_map(char **map)
 	return (clone);
 }
 
-void free_cloned_map(char **map)
+void	free_cloned_map(char **map)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (map[i])
 	{
@@ -45,7 +46,7 @@ void free_cloned_map(char **map)
 	free(map);
 }
 
-void flood(char **map, int x, int y, t_access *acc)
+void	flood(char **map, int x, int y, t_access *acc)
 {
 	if (map[y][x] == '1')
 		return ;

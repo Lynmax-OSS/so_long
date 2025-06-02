@@ -10,19 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../so_long.h"
 
 void	init_mlx(t_game *game)
 {
-	t_map_dim axis;
+	t_map_dim	axis;
 
 	axis.rows = 0;
 	axis.cols = 0;
-	while(game->map[axis.rows] != NULL)
+	while (game->map[axis.rows] != NULL)
 		axis.rows++;
 	axis.cols = ft_strlen(game->map[0]);
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx,  axis.cols * 100, axis.rows * 100, "Down the Dungeon");
+	game->win = mlx_new_window(game->mlx, axis.cols * 100,
+			axis.rows * 100, "Down the Dungeon");
 }

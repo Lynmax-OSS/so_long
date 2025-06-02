@@ -14,18 +14,20 @@
 #include <stdlib.h>
 #include "../so_long.h"
 
-static int line_count(char *filepath)
+static int	line_count(char *filepath)
 {
-	t_map_info line;
+	t_map_info	line;
 
 	line.count = 0;
 	line.fd = open(filepath, O_RDONLY);
-	if(line.fd < 0)
+	if (line.fd < 0)
 		exit(1);
-	while ((line.line = get_next_line(line.fd)) != NULL)
+	line.line = get_next_line(line.fd);
+	while (line.line != NULL)
 	{
 		line.count++;
 		free(line.line);
+		line.line = get_next_line(line.fd);
 	}
 	close (line.fd);
 	return (line.count);
@@ -44,27 +46,29 @@ void	trim_newline(char *line)
 	}
 }
 
-char **read_map(char *filepath)
+char	**read_map(char *filepath)
 {
-	t_map_info line;
-	t_game game;
+	t_map_info	line;
+	t_game		game;
 
 	line.i = 0;
 	line.count = line_count(filepath);
-	game.map = malloc(sizeof(char*) * (line.count + 1));
-	if(game.map == NULL)
+	game.map = malloc(sizeof(char *) * (line.count + 1));
+	if (game.map == NULL)
 	{
 		free (game.map);
 		return (NULL);
 	}
 	line.fd = open(filepath, O_RDONLY);
-	if(line.fd < 0)
+	if (line.fd < 0)
 		return (NULL);
-	while ((line.line = get_next_line(line.fd))) 
+	line.line = get_next_line(line.fd);
+	while (line.line != NULL)
 	{
 		trim_newline(line.line);
 		game.map[line.i++] = ft_strdup(line.line);
 		free (line.line);
+		line.line = get_next_line(line.fd);
 	}
 	game.map[line.i] = NULL;
 	close(line.fd);
@@ -78,7 +82,7 @@ char **read_map(char *filepath)
 
 // 	i = 0;
 // 	map = read_map("../maps/map_1.ber");
-	
+
 // 	while (map[i] != NULL)
 // 	{
 // 		ft_printf("%s\n", map[i]);

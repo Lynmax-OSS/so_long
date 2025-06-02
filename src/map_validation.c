@@ -40,7 +40,7 @@
 // 	return (0);
 // }
 
-char	**read_map(char *filepath);
+// char	**read_map(char *filepath);
 
 static int	is_rectangle(char **map)
 {

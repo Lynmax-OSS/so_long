@@ -14,9 +14,10 @@
 
 int	count_collectibles(char **map)
 {
-	int x;
-	int y;
-	int count;
+	int	x;
+	int	y;
+	int	count;
+
 	y = 0;
 	count = 0;
 	while (map[y])

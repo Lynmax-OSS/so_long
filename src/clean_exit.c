@@ -21,18 +21,17 @@ int	clean_exit(t_game *game)
 		mlx_destroy_image(game->mlx, game->floor);
 	if (game->player)
 		mlx_destroy_image(game->mlx, game->player);
-	if (game->exit) 
+	if (game->exit)
 		mlx_destroy_image(game->mlx, game->exit);
-	if (game->collect) 
+	if (game->collect)
 		mlx_destroy_image(game->mlx, game->collect);
 	if (game->win)
 	{
 		mlx_destroy_display(game->mlx);
 		mlx_destroy_window(game->mlx, game->win);
 	}
-	if(game->mlx)
+	if (game->mlx)
 		free(game->mlx);
 	exit(0);
 	return (0);
 }
-

@@ -14,8 +14,9 @@
 
 void	ass_loader(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
+
 	y = 0;
 	while (game->map[y])
 		y++;

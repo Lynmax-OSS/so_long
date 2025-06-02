@@ -13,14 +13,14 @@
 #include "../so_long.h"
 #include "../Libft/libft.h"
 
-int extension_checker(char *map)
+int	extension_checker(char *map)
 {
-	int path_len;
+	int	path_len;
 
 	path_len = ft_strlen(map);
 	if (!ft_strrchr(map, '.'))
 		ft_printf("Error:Invalid file\n");
-	else if (ft_strncmp(map + path_len - 3, "ber", 3) == 0) 
+	else if (ft_strncmp(map + path_len - 3, "ber", 3) == 0)
 		return (1);
 	return (0);
 }
